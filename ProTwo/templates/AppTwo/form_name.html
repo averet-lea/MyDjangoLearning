@@ -1,0 +1,23 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <title>FORM PAGE</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <form method="POST">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+
+  </div>
+</body>
+
+
+</html>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from AppTwo.models import AccessRecord,Topic,Webpage,user
+from AppTwo.forms import FormName,FormUser
 # Create your views here.
 
 def index(request):
@@ -13,6 +14,28 @@ def help(request):
     return render(request,'AppTwo/help.html',context=helpdict)
 
 def users(request):
-    userlist = user.objects.order_by('first_name')
-    user_dict = {'user_list':userlist}
-    return render(request,'AppTwo/users.html',user_dict)
+    form = FormUser()
+    if request.method == 'POST':
+        form = FormUser(request.POST)
+        if form.is_valid():
+            print("VALID data!")
+            print("Name: "+form.cleaned_data['first_name'])
+            print("Email: "+form.cleaned_data['last_name'])
+            print("Text: "+form.cleaned_data['email'])
+            form.save(commit=True)
+            return index(request)
+        else:
+            print('ERROR ADDING USER')
+    return render(request,'AppTwo/users.html',{'form':form})
+
+
+def form_name_view(request):
+    form = FormName()
+    if request.method == 'POST':
+        form = FormName(request.POST)
+        if form.is_valid():
+            print("VALID data!")
+            print("Name: "+form.cleaned_data['name'])
+            print("Email: "+form.cleaned_data['email'])
+            print("Text: "+form.cleaned_data['text'])
+    return render(request,'AppTwo/form_name.html',{'form':form})

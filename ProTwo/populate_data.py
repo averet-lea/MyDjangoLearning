@@ -38,6 +38,6 @@ if __name__ == '__main__':
     Webpage.objects.all().delete()
     AccessRecord.objects.all().delete()
     user.objects.all().delete()
-    populate(20)
-    populateUsers(30)
+#    populate(20)
+#    populateUsers(30)
     print('Complete')
