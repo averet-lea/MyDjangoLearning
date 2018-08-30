@@ -5,9 +5,8 @@ from AppTwo.forms import FormName,FormUser
 # Create your views here.
 
 def index(request):
-    webpages_list = AccessRecord.objects.order_by('date')
-    date_dict = {'access_records':webpages_list}
-    return render(request,'AppTwo/index.html',context=date_dict)
+    context_dict = {'text':'some text','number':1234567}
+    return render(request,'AppTwo/index.html',context=context_dict)
 
 def help(request):
     helpdict = {'help_insert':'HELP PAGE'}
@@ -39,3 +38,12 @@ def form_name_view(request):
             print("Email: "+form.cleaned_data['email'])
             print("Text: "+form.cleaned_data['text'])
     return render(request,'AppTwo/form_name.html',{'form':form})
+
+def other(request):
+    return render(request,'AppTwo/other.html')
+
+def url_templates(request):
+    return render(request,'AppTwo/url_templates.html')
+
+def base(request):
+    return render(request,'AppTwo/base.html')
